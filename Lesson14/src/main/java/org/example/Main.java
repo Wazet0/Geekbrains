@@ -1,5 +1,7 @@
 package org.example;
 
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) {
         Thread server = new Thread(new Server());
@@ -11,7 +13,10 @@ public class Main {
         try{
             server.join();
             client.join();
-        }catch(InterruptedException e){
+            for(int i = 0; i < Server.users.size(); i++){
+                Server.users.get(i).close();
+            }
+        }catch(InterruptedException | IOException e){
             e.printStackTrace();
         }
     }

@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class Server implements Runnable{
     private static final int PORT = 8080;
-    public static HashMap<Integer, Socket> users = new HashMap<>();
+    public static final HashMap<Integer, Socket> users = new HashMap<>();
 
     @Override
     public void run(){

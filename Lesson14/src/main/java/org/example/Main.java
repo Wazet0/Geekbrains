@@ -13,10 +13,7 @@ public class Main {
         try{
             server.join();
             client.join();
-            for(int i = 0; i < Server.users.size(); i++){
-                Server.users.get(i).close();
-            }
-        }catch(InterruptedException | IOException e){
+        }catch(InterruptedException e){
             e.printStackTrace();
         }
     }

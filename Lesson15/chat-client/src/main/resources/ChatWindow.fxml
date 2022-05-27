@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.gb.may_chat.client.ChatController">
+    <VBox visible="false" fx:id="changeNickPanel">
+
+        <HBox VBox.vgrow="ALWAYS">
+            <VBox>
+                <Label text="Please enter your new nickname:"/>
+                <TextField fx:id="newNickField" onAction="#sendChangeNick"/>
+            </VBox>
+        </HBox>
+        <Button text="SEND" onAction="#sendChangeNick"/>
+        <Button text="RETURN" onAction="#returnToChat"/>
+    </VBox>
+    <VBox visible="false" fx:id="changePasswordPanel">
+
+        <HBox VBox.vgrow="ALWAYS">
+            <VBox>
+                <Label text="Please enter your old password:"/>
+                <PasswordField fx:id="oldPassField" onAction="#sendChangePass"/>
+            </VBox>
+            <VBox>
+                <Label text="Please enter your new password:"/>
+                <PasswordField fx:id="newPasswordField" onAction="#sendChangePass"/>
+            </VBox>
+        </HBox>
+        <Button text="SEND" onAction="#sendChangePass"/>
+        <Button text="RETURN" onAction="#returnToChat"/>
+    </VBox>
+    <VBox fx:id="loginPanel">
+        <Label text="Login: "/>
+        <TextField fx:id="loginField"/>
+        <Label text="Password: "/>
+        <PasswordField fx:id="passwordField" onAction="#sendAuth"/>
+        <Button text="connect" onAction="#sendAuth"/>
+    </VBox>
+    <VBox fx:id="mainPanel" visible="false">
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Open" onAction="#mockAction"/>
+                <MenuItem text="Connect" onAction="#mockAction"/>
+                <MenuItem text="Something" onAction="#mockAction"/>
+                <MenuItem text="Exit" onAction="#closeApplication"/>
+            </Menu>
+            <Menu text="Edit">
+                <MenuItem text="Open" onAction="#mockAction"/>
+                <MenuItem text="Connect" onAction="#mockAction"/>
+                <MenuItem text="Something" onAction="#mockAction"/>
+                <MenuItem text="Exit" onAction="#mockAction"/>
+            </Menu>
+            <Menu text="View">
+                <MenuItem text="Open" onAction="#mockAction"/>
+                <MenuItem text="Connect" onAction="#mockAction"/>
+                <MenuItem text="Something" onAction="#mockAction"/>
+                <MenuItem text="Exit" onAction="#mockAction"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="Open" onAction="#mockAction"/>
+                <MenuItem text="Connect" onAction="#mockAction"/>
+                <MenuItem text="Something" onAction="#mockAction"/>
+                <MenuItem text="Exit" onAction="#mockAction"/>
+            </Menu>
+        </MenuBar>
+
+        <HBox VBox.vgrow="ALWAYS">
+            <TextArea fx:id="chatArea" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" editable="false">
+                <HBox.margin>
+                    <Insets left="6.0" right="6.0"/>
+                </HBox.margin>
+            </TextArea>
+            <ListView fx:id="contacts" prefWidth="150.0">
+                <HBox.margin>
+                    <Insets left="6.0" right="6.0"/>
+                </HBox.margin>
+            </ListView>
+            <VBox.margin>
+                <Insets bottom="12.0" top="5.0"/>
+            </VBox.margin>
+        </HBox>
+
+        <HBox VBox.vgrow="ALWAYS">
+            <TextField fx:id="inputField"  HBox.hgrow="ALWAYS" prefHeight="65.0" onAction="#sendMessage">
+                <HBox.margin>
+                    <Insets left="6.0" right="6.0"/>
+                </HBox.margin>
+            </TextField>
+            <Button fx:id="btnSend" minWidth="150.0" prefHeight="65.0" onAction="#sendMessage" text="SEND">
+                <HBox.margin>
+                    <Insets left="6.0" right="6.0"/>
+                </HBox.margin>
+            </Button>
+            <VBox.margin>
+                <Insets bottom="5.0"/>
+            </VBox.margin>
+        </HBox>
+    </VBox>
+
+</AnchorPane>

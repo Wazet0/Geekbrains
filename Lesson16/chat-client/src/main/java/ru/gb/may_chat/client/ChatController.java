@@ -141,6 +141,7 @@ public class ChatController implements Initializable, MessageProcessor {
         user = split[1];
         loginPanel.setVisible(false);
         mainPanel.setVisible(true);
+        networkService.setStatusAuth(true);
     }
 
     public void sendChangeNick(ActionEvent actionEvent) {

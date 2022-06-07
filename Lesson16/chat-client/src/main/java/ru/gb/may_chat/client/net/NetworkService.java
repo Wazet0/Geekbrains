@@ -1,5 +1,7 @@
 package ru.gb.may_chat.client.net;
 
+import javafx.application.Platform;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,14 +12,38 @@ import java.net.Socket;
 public class NetworkService {
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 8189;
+    private static final int TIME_OUT = 120;
     private DataInputStream in;
     private DataOutputStream out;
     private Socket socket;
     private Thread clientThread;
     private final MessageProcessor messageProcessor;
 
+    private static boolean isAuth = false;
+
     public NetworkService(MessageProcessor messageProcessor) {
         this.messageProcessor = messageProcessor;
+        //Time-Out timer thread
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i <= TIME_OUT; i++){
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                if(!isAuth){
+                    try{
+                        shutdown();
+                        Platform.exit();
+                    }catch(IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     public void connect() throws IOException {
@@ -64,6 +90,10 @@ public class NetworkService {
             socket.close();
         }
         System.out.println("Client stopped");
+    }
+
+    public void setStatusAuth(boolean status){
+        isAuth = status;
     }
 
 }
